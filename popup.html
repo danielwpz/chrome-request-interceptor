@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Request Interceptor</h1>
+      <button id="addRuleBtn" class="btn btn-primary">Add Rule</button>
+    </div>
+
+    <div class="content">
+      <div id="rulesContainer">
+        <div class="empty-state" id="emptyState">
+          <p>No intercept rules configured</p>
+          <p class="hint">Click "Add Rule" to start intercepting requests</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add/Edit Rule Modal -->
+    <div id="ruleModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add Intercept Rule</h2>
+          <button id="closeModal" class="close-btn">&times;</button>
+        </div>
+        
+        <form id="ruleForm">
+          <div class="form-group">
+            <label for="method">HTTP Method:</label>
+            <select id="method" required>
+              <option value="ANY">ANY</option>
+              <option value="GET">GET</option>
+              <option value="POST">POST</option>
+              <option value="PUT">PUT</option>
+              <option value="DELETE">DELETE</option>
+              <option value="PATCH">PATCH</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="urlPattern">URL Pattern:</label>
+            <input type="text" id="urlPattern" placeholder="e.g., foo.com/api/status" required>
+            <small>Matches any URL containing this text</small>
+          </div>
+
+          <div class="form-group">
+            <label for="responseBody">Response JSON:</label>
+            <textarea id="responseBody" placeholder='{"status": "ok"}' required></textarea>
+            <small>Must be valid JSON</small>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="cancelBtn" class="btn btn-secondary">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Rule</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Rule Item Template -->
+    <template id="ruleTemplate">
+      <div class="rule-item">
+        <div class="rule-header">
+          <div class="rule-info">
+            <span class="method-badge"></span>
+            <span class="url-pattern"></span>
+          </div>
+          <div class="rule-actions">
+            <label class="toggle-switch">
+              <input type="checkbox" class="rule-enabled">
+              <span class="slider"></span>
+            </label>
+            <button class="btn-icon edit-btn" title="Edit">✏️</button>
+            <button class="btn-icon delete-btn" title="Delete">🗑️</button>
+          </div>
+        </div>
+        <div class="rule-response">
+          <code class="response-preview"></code>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

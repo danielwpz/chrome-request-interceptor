@@ -1,0 +1,15 @@
+{
+  "name": "chrome-request-interceptor",
+  "version": "1.0.0",
+  "description": "Chrome extension to intercept HTTP requests and return custom responses",
+  "scripts": {
+    "build": "echo 'Build complete'",
+    "dev": "echo 'Development mode'"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.251"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

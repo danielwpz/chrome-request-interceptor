@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Request Interceptor",
+  "version": "1.0.0",
+  "description": "Intercept HTTP requests and return custom responses",
+  
+  "permissions": [
+    "storage",
+    "activeTab", 
+    "scripting",
+    "tabs",
+    "webNavigation"
+  ],
+  
+  "host_permissions": [
+    "*://*/*"
+  ],
+  
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],  
+
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Request Interceptor"
+  }
+}
